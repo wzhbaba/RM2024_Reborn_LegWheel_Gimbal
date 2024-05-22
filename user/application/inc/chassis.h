@@ -23,33 +23,19 @@
 /* Exported macro ------------------------------------------------------------*/
 /* Exported constants --------------------------------------------------------*/
 /* Exported types ------------------------------------------------------------*/
-class Chassis
-{
-   public:
-    void Init();
-    void Control();
-    void SetYawAngle(int16_t _ang)
-    {
-        ang_yaw_ = _ang;
-    };
-    void SetXSpeed(float _spd)
-    {
-        x_target_ = _spd;
-    };
-    void SetYSpeed(float _spd)
-    {
-        y_target_ = _spd;
-    };
-    void SetWSpeed(float _spd)
-    {
-        w_target_ = _spd;
-    };
+class Chassis {
+ public:
+  void Init();
+  void Control();
+  void SetYawAngle(int16_t _ang) { ang_yaw_ = _ang; };
+  void SetXSpeed(float _spd) { x_target_ = _spd; };
+  void SetYSpeed(float _spd) { y_target_ = _spd; };
 
-   private:
-    Pid follow_;
-    int16_t ang_yaw_;
-    float x_spd_, y_spd_, w_spd_;
-    float x_target_, y_target_, w_target_;
+ private:
+  Pid follow_;
+  int16_t ang_yaw_;
+  float x_spd_, y_spd_, w_bias;
+  float x_target_, y_target_, w_target_;
 };
 /* Exported variables --------------------------------------------------------*/
 extern Chassis chassis;
