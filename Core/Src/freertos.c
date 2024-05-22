@@ -78,12 +78,13 @@ void vApplicationGetIdleTaskMemory( StaticTask_t **ppxIdleTaskTCBBuffer, StackTy
 static StaticTask_t xIdleTaskTCBBuffer;
 static StackType_t xIdleStack[configMINIMAL_STACK_SIZE];
 
-void vApplicationGetIdleTaskMemory(StaticTask_t **ppxIdleTaskTCBBuffer, StackType_t **ppxIdleTaskStackBuffer, uint32_t *pulIdleTaskStackSize)
-{
-    *ppxIdleTaskTCBBuffer = &xIdleTaskTCBBuffer;
-    *ppxIdleTaskStackBuffer = &xIdleStack[0];
-    *pulIdleTaskStackSize = configMINIMAL_STACK_SIZE;
-    /* place for user code */
+void vApplicationGetIdleTaskMemory(StaticTask_t** ppxIdleTaskTCBBuffer,
+                                   StackType_t** ppxIdleTaskStackBuffer,
+                                   uint32_t* pulIdleTaskStackSize) {
+  *ppxIdleTaskTCBBuffer = &xIdleTaskTCBBuffer;
+  *ppxIdleTaskStackBuffer = &xIdleStack[0];
+  *pulIdleTaskStackSize = configMINIMAL_STACK_SIZE;
+  /* place for user code */
 }
 /* USER CODE END GET_IDLE_TASK_MEMORY */
 
@@ -98,19 +99,19 @@ void MX_FREERTOS_Init(void) {
   /* USER CODE END Init */
 
   /* USER CODE BEGIN RTOS_MUTEX */
-    /* add mutexes, ... */
+  /* add mutexes, ... */
   /* USER CODE END RTOS_MUTEX */
 
   /* USER CODE BEGIN RTOS_SEMAPHORES */
-    /* add semaphores, ... */
+  /* add semaphores, ... */
   /* USER CODE END RTOS_SEMAPHORES */
 
   /* USER CODE BEGIN RTOS_TIMERS */
-    /* start timers, add new ones, ... */
+  /* start timers, add new ones, ... */
   /* USER CODE END RTOS_TIMERS */
 
   /* USER CODE BEGIN RTOS_QUEUES */
-    /* add queues, ... */
+  /* add queues, ... */
   /* USER CODE END RTOS_QUEUES */
 
   /* Create the thread(s) */
@@ -139,7 +140,7 @@ void MX_FREERTOS_Init(void) {
   canTaskHandle = osThreadCreate(osThread(canTask), NULL);
 
   /* USER CODE BEGIN RTOS_THREADS */
-    /* add threads, ... */
+  /* add threads, ... */
   /* USER CODE END RTOS_THREADS */
 
 }
@@ -156,11 +157,11 @@ void StartDefaultTask(void const * argument)
   /* init code for USB_DEVICE */
   MX_USB_DEVICE_Init();
   /* USER CODE BEGIN StartDefaultTask */
-    /* Infinite loop */
-    for (;;) {
-        HAL_GPIO_TogglePin(LED_B_GPIO_Port, LED_B_Pin);
-        osDelay(100);
-    }
+  /* Infinite loop */
+  for (;;) {
+    HAL_GPIO_TogglePin(LED_B_GPIO_Port, LED_B_Pin);
+    osDelay(100);
+  }
   /* USER CODE END StartDefaultTask */
 }
 
@@ -174,12 +175,12 @@ void StartDefaultTask(void const * argument)
 void StartInsTask(void const * argument)
 {
   /* USER CODE BEGIN StartInsTask */
-    INS_Init();
-    /* Infinite loop */
-    for (;;) {
-        INS_Task();
-        osDelay(1);
-    }
+  INS_Init();
+  /* Infinite loop */
+  for (;;) {
+    INS_Task();
+    osDelay(1);
+  }
   /* USER CODE END StartInsTask */
 }
 
@@ -193,12 +194,12 @@ void StartInsTask(void const * argument)
 void StartGimbalTask(void const * argument)
 {
   /* USER CODE BEGIN StartGimbalTask */
-    GimbalInit();
-    /* Infinite loop */
-    for (;;) {
-        GimbalTask();
-        osDelay(1);
-    }
+  GimbalInit();
+  /* Infinite loop */
+  for (;;) {
+    GimbalTask();
+    osDelay(1);
+  }
   /* USER CODE END StartGimbalTask */
 }
 
@@ -212,11 +213,11 @@ void StartGimbalTask(void const * argument)
 void StartModeTask(void const * argument)
 {
   /* USER CODE BEGIN StartModeTask */
-    /* Infinite loop */
-    for (;;) {
-        ModeTask();
-        osDelay(1);
-    }
+  /* Infinite loop */
+  for (;;) {
+    ModeTask();
+    osDelay(1);
+  }
   /* USER CODE END StartModeTask */
 }
 
@@ -230,27 +231,26 @@ void StartModeTask(void const * argument)
 void StartChassisTask(void const * argument)
 {
   /* USER CODE BEGIN StartChassisTask */
-    /* Infinite loop */
-    for (;;) {
-        ChassisTask();
-        osDelay(5);
-    }
+  /* Infinite loop */
+  for (;;) {
+    ChassisTask();
+    osDelay(2);
+  }
   /* USER CODE END StartChassisTask */
 }
 
 /* USER CODE BEGIN Header_StartCanTask */
 /**
-* @brief Function implementing the canTask thread.
-* @param argument: Not used
-* @retval None
-*/
+ * @brief Function implementing the canTask thread.
+ * @param argument: Not used
+ * @retval None
+ */
 /* USER CODE END Header_StartCanTask */
 void StartCanTask(void const * argument)
 {
   /* USER CODE BEGIN StartCanTask */
   /* Infinite loop */
-  for(;;)
-  {
+  for (;;) {
     CanTask();
     osDelay(1);
   }
