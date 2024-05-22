@@ -40,7 +40,7 @@ void InfantryGimbalInit() {
   referee.Init(&huart6);
   gimbal.MotorInit();
   shoot.MotorInit();
-  board_comm.Init(&hcan1, 0x411);
+  board_comm.Init(&hcan1, 0x101);
 }
 
 /**
@@ -57,7 +57,6 @@ void GimbalInit() {
  * @brief This function handles the Gimbal task.
  */
 void GimbalTask() {
-  dt = DWT_GetDeltaT(&dwt_cnt);
   gimbal.Control();
   shoot.Control();
   chassis.Control();
@@ -86,5 +85,11 @@ void VisionCallback() {
 }
 
 void ChassisTask() {
+  if (referee.GetKeyPress(KEY_B)) {
+    board_comm.SetRefreshUIFlag(1);
+  } else {
+    board_comm.SetRefreshUIFlag(0);
+  }
+
   board_comm.Send();
 }
