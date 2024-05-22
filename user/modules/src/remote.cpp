@@ -45,10 +45,12 @@ void Remote_t::SbusToRc(uint8_t *_pdata)
     Pack_.press_l = _pdata[12];
     Pack_.press_r = _pdata[13];
     Pack_.key = _pdata[14] | _pdata[15] << 8;
+    Pack_.ch4 = _pdata[16] | _pdata[17] << 8;
     Pack_.ch0 -= kremote_offest;
     Pack_.ch1 -= kremote_offest;
     Pack_.ch2 -= kremote_offest;
     Pack_.ch3 -= kremote_offest;
+    Pack_.ch4 -= kremote_offest;
 }
 
 /**
