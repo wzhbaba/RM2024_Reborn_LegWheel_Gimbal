@@ -22,7 +22,7 @@
 #include "dji_motor.h"
 #include "pid.h"
 /* Exported macro ------------------------------------------------------------*/
-const int16_t k_yaw_offset = 3451;
+const int16_t k_yaw_offset = 6801;
 
 /* Exported constants --------------------------------------------------------*/
 #define YAW 0;
